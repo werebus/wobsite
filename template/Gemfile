@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+#
 source 'https://rubygems.org'
+ruby IO.read(File.expand_path('.ruby-version', __dir__)).strip
 
 gem 'middleman', '~> 4.2'
 gem 'middleman-autoprefixer', '~> 2.7'
-gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby, :x64_mingw]
-gem 'wdm', '~> 0.1', platforms: [:mswin, :mingw, :x64_mingw]
