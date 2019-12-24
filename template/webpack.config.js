@@ -3,8 +3,8 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    js: './javascripts/site.js',
-    css: './stylesheets/site.css.scss'
+    js: './source/js/site.js',
+    css: './source/style/site.css.scss'
   },
 
   resolve: {
