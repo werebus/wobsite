@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
   entry: {
     js: './source/js/site.js',
-    css: './source/style/site.css.scss'
+    style: './source/style/site.css.scss'
   },
 
   resolve: {

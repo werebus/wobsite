@@ -4,7 +4,7 @@ page '/*.json', layout: false
 page '/*.txt', layout: false
 page '/*.xml', layout: false
 
-webpack_build = './node_modules/webpack/bin/webpack.js --bail'
+webpack_build = './node_modules/webpack/bin/webpack.js --bail -p'
 webpack_watch = './node_modules/webpack/bin/webpack.js --watch -d'
 activate :external_pipeline,
   name: :webpack,
@@ -12,5 +12,5 @@ activate :external_pipeline,
   source: '.tmp/dist',
   latency: 1
 
-ignore 'js/**/*'
-ignore 'style/**/*'
+ignore /^js\//
+ignore /^style\//
