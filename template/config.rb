@@ -14,8 +14,8 @@ set :markdown,
   with_toc_data: true
 set :markdown_engine, :redcarpet
 
-webpack_build = './node_modules/webpack/bin/webpack.js --bail -p'
-webpack_watch = './node_modules/webpack/bin/webpack.js --watch -d'
+webpack_build = 'yarn run webpack --bail -p'
+webpack_watch = 'yarn run webpack --watch -d'
 activate :external_pipeline,
   name: :webpack,
   command: build? ? webpack_build : webpack_watch,
