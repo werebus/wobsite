@@ -9,4 +9,4 @@ $ gem install middleman
 $ middleman init SITE_NAME --template=werebus/wobsite
 ```
 
-[mt]: https://github.com/thoughtbot/middlemantemplate
+[mt]: https://github.com/thoughtbot/middleman-template
