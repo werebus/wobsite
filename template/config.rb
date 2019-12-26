@@ -24,3 +24,8 @@ activate :external_pipeline,
 
 ignore /^js\//
 ignore /^style\//
+
+configure :production do
+  activate :minify_html
+  activate :gzip
+end
