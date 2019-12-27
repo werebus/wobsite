@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'pathname'
+
+fail 'Specify a path to your new project' unless ARGV.length == 1
+
+outpath = Pathname(ENV['PWD']).join(ARGV[0]).expand_path
+
+outpath.mkdir unless outpath.directory?
+
+outpath.join('.ruby-version').open('w') do |rv|
+  rv.write '2.6.1'
+end
+
+outpath.join('Gemfile').open('w') do |gf|
+  gf.write <<~GEMFILE
+    source 'https://rubygems.org'
+    gem 'middleman', '~> 4.2'
+  GEMFILE
+end
+
+Dir.chdir(outpath) do
+  system 'bundle'
+  system 'yes | bundle exec middleman init -B -T werebus/wobsite'
+end
