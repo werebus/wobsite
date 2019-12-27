@@ -15,5 +15,6 @@ If not, use the bootstrap script:
 ```bash
 $ \curl -sSL https://raw.githubusercontent.com/werebus/wobsite/master/bootstrap |\
   ruby - SITE_NAME
+```
 
 [mt]: https://github.com/thoughtbot/middleman-template
