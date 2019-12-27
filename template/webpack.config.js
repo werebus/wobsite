@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
@@ -28,6 +30,14 @@ module.exports = {
       filename: '_scripts.html',
       template: 'scripts.ejs',
       inject: false
+    }),
+    new HtmlWebpackPlugin({
+      filename: '_styles.html',
+      template: 'styles.ejs',
+      inject: false
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'stylesheets/[name].[contenthash].css'
     })
   ],
 
@@ -36,7 +46,7 @@ module.exports = {
       {
         test: /\.(scss)$/,
         use: [
-          { loader: 'style-loader' },
+          MiniCssExtractPlugin.loader,
           { loader: 'css-loader' },
           {
             loader: 'postcss-loader',

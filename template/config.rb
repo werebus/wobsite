@@ -36,4 +36,10 @@ helpers do
       app, '_scripts.html', try_static: true
     ).read
   end
+
+  def webpack_css
+    ::Middleman::TemplateRenderer.resolve_template(
+      app, '_styles.html', try_static: true
+    ).read
+  end
 end
