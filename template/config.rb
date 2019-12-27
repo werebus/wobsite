@@ -29,3 +29,11 @@ configure :production do
   activate :minify_html
   activate :gzip
 end
+
+helpers do
+  def webpack_js
+    ::Middleman::TemplateRenderer.resolve_template(
+      app, '_scripts.html', try_static: true
+    ).read
+  end
+end

@@ -1,0 +1,60 @@
+<% var item, key %><%
+htmlWebpackPlugin.options.scripts = htmlWebpackPlugin.options.scripts || []
+%>
+<!-- HEAD
+    <%for (key in htmlWebpackPlugin.files.css) { %><%
+      if (htmlWebpackPlugin.files.cssIntegrity) { %>
+    <link
+      href="<%= htmlWebpackPlugin.files.css[key] %>"
+      rel="stylesheet"
+      integrity="<%= htmlWebpackPlugin.files.cssIntegrity[key] %>"
+      crossorigin="<%= webpackConfig.output.crossOriginLoading %>" /><%
+      } else { %>
+    <link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet" /><%
+      } %><%
+    } %>
+-->
+<%
+if (htmlWebpackPlugin.options.window) { %>
+<script type="text/javascript"><%
+  for (key in htmlWebpackPlugin.options.window) { %>
+  window['<%= key %>'] = <%= JSON.stringify(htmlWebpackPlugin.options.window[key]) %>;<%
+  } %>
+</script><%
+} %><%
+
+for (item of htmlWebpackPlugin.options.scripts) { %><%
+  if (typeof item === 'string' || item instanceof String) { item = { src: item, type: 'text/javascript' } } %>
+<script<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %>></script><%
+} %><%
+
+for (key in htmlWebpackPlugin.files.chunks) { %><%
+  if (htmlWebpackPlugin.files.jsIntegrity) { %>
+<script
+  src="<%= htmlWebpackPlugin.files.chunks[key].entry %>"
+  type="text/javascript"
+  integrity="<%= htmlWebpackPlugin.files.jsIntegrity[htmlWebpackPlugin.files.js.indexOf(htmlWebpackPlugin.files.chunks[key].entry)] %>"
+  crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script><%
+  } else { %>
+<script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>" type="text/javascript"></script><%
+  } %><%
+} %><%
+
+if (htmlWebpackPlugin.options.devServer) { %>
+<script src="<%= htmlWebpackPlugin.options.devServer %>/webpack-dev-server.js" type="text/javascript"></script><%
+} %><%
+
+if (htmlWebpackPlugin.options.googleAnalytics) { %>
+<script type="text/javascript">
+  window.GoogleAnalyticsObject='ga';window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;<%
+
+  if (htmlWebpackPlugin.options.googleAnalytics.trackingId) { %>
+  ga('create','<%= htmlWebpackPlugin.options.googleAnalytics.trackingId %>','auto');<%
+  } else { throw new Error("html-webpack-template requires googleAnalytics.trackingId config"); } %><%
+
+  if (htmlWebpackPlugin.options.googleAnalytics.pageViewOnLoad) { %>
+  ga('send','pageview')<%
+  } %>
+</script>
+<script async defer src="https://www.google-analytics.com/analytics.js" type="text/javascript"></script><%
+} %>

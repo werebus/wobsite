@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -14,11 +15,20 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, '.tmp', 'dist'),
-    filename: 'javascripts/[name].js',
+    filename: 'javascripts/[name].[contenthash].js',
+  },
+
+  optimization: {
+    runtimeChunk: 'single'
   },
 
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: '_scripts.html',
+      template: 'scripts.ejs',
+      inject: false
+    })
   ],
 
   module: {
