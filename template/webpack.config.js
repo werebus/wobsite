@@ -1,5 +1,6 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -15,6 +16,10 @@ module.exports = {
     path: path.join(__dirname, '.tmp', 'dist'),
     filename: 'javascripts/[name].js',
   },
+
+  plugins: [
+    new CleanWebpackPlugin()
+  ],
 
   module: {
     rules: [
