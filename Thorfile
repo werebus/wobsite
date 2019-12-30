@@ -17,6 +17,10 @@ module Middleman
       run 'chmod a+x bin/setup'
     end
 
+    def remove_bs_gemfile
+      run 'rm -f BSGemfile'
+    end
+
     def run_setup_script
       puts 'Running the setup script'
       run 'bin/setup'
