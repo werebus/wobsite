@@ -24,6 +24,5 @@ end
 
 Dir.chdir(outpath) do
   system 'bundle install --quiet --gemfile=BSGemfile'
-  system 'bundle exec --gemfile=BSGemfile' \
-         'middleman init -B -T werebus/wobsite'
+  system 'bundle exec --gemfile=BSGemfile middleman init -B -T werebus/wobsite'
 end

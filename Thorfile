@@ -18,7 +18,7 @@ module Middleman
     end
 
     def remove_bs_gemfile
-      run 'rm -f BSGemfile'
+      run 'rm -f BSGemfile*'
     end
 
     def run_setup_script
