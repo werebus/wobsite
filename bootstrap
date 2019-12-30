@@ -2,25 +2,28 @@
 # frozen_string_literal: true
 
 require 'pathname'
+ruby_requirement = Gem::Dependency.new('', ['~> 2.6', '>=2.6.1'])
 
 fail 'Specify a path to your new project' unless ARGV.length == 1
+unless ruby_requirement.match?('', RUBY_VERSION)
+  fail "Install and use a supported version of ruby #{ruby_requirement}"
+end
 
 outpath = Pathname(ENV['PWD']).join(ARGV[0]).expand_path
 
 outpath.mkdir unless outpath.directory?
 
-outpath.join('.ruby-version').open('w') do |rv|
-  rv.write '2.6.1'
-end
-
-outpath.join('Gemfile').open('w') do |gf|
+outpath.join('BSGemfile').open('w') do |gf|
   gf.write <<~GEMFILE
+    # Temporary Gemfile
+
     source 'https://rubygems.org'
     gem 'middleman', '~> 4.2'
   GEMFILE
 end
 
 Dir.chdir(outpath) do
-  system 'bundle'
-  system 'yes | bundle exec middleman init -B -T werebus/wobsite'
+  system 'bundle install --quiet --gemfile=BSGemfile'
+  system 'bundle exec --gemfile=BSGemfile' \
+         'middleman init -B -T werebus/wobsite'
 end

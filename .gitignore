@@ -1,3 +1,4 @@
 template/Gemfile.lock
 template/node_modules
 template/yarn.lock
+template/.ruby-version
