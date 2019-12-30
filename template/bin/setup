@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+unset BUNDLE_GEMFILE
 
 bundle check || bundle install
 yarn install
