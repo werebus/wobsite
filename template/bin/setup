@@ -12,5 +12,5 @@ definition = Bundler::Definition.build(gemfile, lockfile, nil)
 Bundler::Installer.install(root_path, definition)
 
 Dir.chdir(root_path) do
-  #system 'yarn install'
+  system 'yarn install'
 end

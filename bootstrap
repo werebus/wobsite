@@ -13,16 +13,7 @@ outpath = Pathname(ENV['PWD']).join(ARGV[0]).expand_path
 
 outpath.mkdir unless outpath.directory?
 
-outpath.join('BSGemfile').open('w') do |gf|
-  gf.write <<~GEMFILE
-    # Temporary Gemfile
-
-    source 'https://rubygems.org'
-    gem 'middleman', '~> 4.2'
-  GEMFILE
-end
-
 Dir.chdir(outpath) do
-  system 'bundle install --quiet --gemfile=BSGemfile'
-  system 'bundle exec --gemfile=BSGemfile middleman init -B -T werebus/wobsite'
+  system 'gem install middleman --silent'
+  system 'middleman init --template --skip-bundler werebus/wobsite'
 end

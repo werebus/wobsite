@@ -9,12 +9,6 @@ module Middleman
 
     source_root Pathname(__dir__).expand_path
 
-    def remove_bootstrapping_gemfile
-      return unless ENV['WOBSITE_BOOTSTRAPPING']
-
-      run 'rm -f Gemfile*'
-    end
-
     def copy_base_template
       directory 'template', '.'
     end
