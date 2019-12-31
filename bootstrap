@@ -15,5 +15,5 @@ outpath.mkdir unless outpath.directory?
 
 Dir.chdir(outpath) do
   system 'gem install middleman --silent'
-  system 'middleman init --skip-bundle --template werebus/wobsite'
+  system 'middleman init --skip-bundle --template=werebus/wobsite'
 end
