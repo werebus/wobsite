@@ -1,5 +1,16 @@
-#!/bin/sh
-set -e
+#!/usr/bin/env ruby
 
-bundle check || bundle install
-yarn install
+require 'bundler'
+require 'pathname'
+
+root_path = Pathname(__dir__).join('..').expand_path
+
+gemfile = root_path.join('Gemfile')
+lockfile = root_path.join('Gemfile.lock')
+lockfile = nil unless lockfile.exist?
+definition = Bundler::Definition.build(gemfile, lockfile, nil)
+Bundler::Installer.install(root_path, definition)
+
+Dir.chdir(root_path) do
+  #system 'yarn install'
+end
