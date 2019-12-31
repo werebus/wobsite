@@ -7,6 +7,10 @@ module Middleman
   class Generator < ::Thor::Group
     include ::Thor::Actions
 
+    def self.exit_on_failure?
+      true
+    end
+
     source_root Pathname(__dir__).expand_path
 
     def copy_base_template
