@@ -14,6 +14,6 @@ outpath = Pathname(ENV['PWD']).join(ARGV[0]).expand_path
 outpath.mkdir unless outpath.directory?
 
 Dir.chdir(outpath) do
-  system 'gem install middleman --silent'
+  system "gem install middleman --version '~> 4.2' --silent"
   system 'middleman init --skip-bundle --template=werebus/wobsite'
 end
