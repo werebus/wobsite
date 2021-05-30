@@ -27,13 +27,13 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: '_scripts.html',
-      template: 'scripts.ejs',
+      filename: '_webpack_body.html',
+      templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.bodyTags}`,
       inject: false
     }),
     new HtmlWebpackPlugin({
-      filename: '_styles.html',
-      template: 'styles.ejs',
+      filename: '_webpack_head.html',
+      templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.headTags}`,
       inject: false
     }),
     new MiniCssExtractPlugin({

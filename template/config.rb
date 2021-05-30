@@ -22,8 +22,8 @@ activate :external_pipeline,
   source: '.tmp/dist',
   latency: 1
 
-ignore /^js\//
-ignore /^style\//
+ignore %r{^js/}
+ignore %r{^style/}
 
 configure :production do
   activate :minify_html
@@ -31,15 +31,15 @@ configure :production do
 end
 
 helpers do
-  def webpack_js
+  def webpack_body
     ::Middleman::TemplateRenderer.resolve_template(
-      app, '_scripts.html', try_static: true
+      app, '_webpack_body.html', try_static: true
     ).read
   end
 
-  def webpack_css
+  def webpack_head
     ::Middleman::TemplateRenderer.resolve_template(
-      app, '_styles.html', try_static: true
+      app, '_webpack_head.html', try_static: true
     ).read
   end
 end
